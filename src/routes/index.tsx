@@ -2,15 +2,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useHydrated } from "@tanstack/react-router";
 
+import { ExternalLink, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+
 import { ThemeToggle } from "@/components/ThemeToggle";
 import projectPhone from "@/assets/project-dark-phone.jpg";
 // Placeholder until Aditi shares the real About photo; swap the import to her image.
 import aboutImage from "@/assets/project-dark-phone.jpg";
-import sih1 from "@/assets/sih-1.png.asset.json";
-import sih2 from "@/assets/sih-2.png.asset.json";
-import sih3 from "@/assets/sih-3.png.asset.json";
-import sih4 from "@/assets/sih-4.png.asset.json";
-import sih5 from "@/assets/sih-5.png.asset.json";
+import sih1 from "@/assets/SIH-1.jpeg";
+import sih2 from "@/assets/SIH-2.jpeg";
+import sih3 from "@/assets/SIH-3.jpeg";
+import sih4 from "@/assets/SIH-4.jpeg";
+import sih5 from "@/assets/SIH-5.png";
+import sih6 from "@/assets/SIH-6.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -69,14 +72,34 @@ const certifications = [
   },
 ];
 
-const socials = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/aditi-gavasane" },
-  { label: "GitHub", href: "https://github.com/aditigavasane" },
-  { label: "Devpost", href: "https://devpost.com/aditigavasane" },
-  { label: "Resume", href: "/resume.pdf" },
-];
+const contactDetails = {
+  email: "aditigavsane@gmail.com",
+  phone: "+91 88560 11818",
+  address: "Maharashtra, India",
+};
 
-const EMAIL = "aditigavasane@gmail.com";
+const socials = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/aditi-gavasane-126b1232b/",
+    icon: Linkedin,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/aditigavasane911",
+    icon: Github,
+  },
+  {
+    label: "Devpost",
+    href: "https://devpost.com/aditigavsane?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav",
+    icon: ExternalLink,
+  },
+  {
+    label: "Resume",
+    href: "/resume.pdf",
+    icon: ExternalLink,
+  },
+];
 
 const projects = [
   {
@@ -114,11 +137,12 @@ const projects = [
 const featuredCount = 3;
 
 const gallery = [
-  { src: sih1.url, caption: "Team with mentors at SIH 2025" },
-  { src: sih2.url, caption: "Team Travion at the booth" },
-  { src: sih3.url, caption: "Judging round" },
-  { src: sih4.url, caption: "Grand finale portrait" },
-  { src: sih5.url, caption: "Working through the night" },
+  { src: sih1, caption: "Team with mentors at SIH 2025" },
+  { src: sih2, caption: "Team Travion at the booth" },
+  { src: sih3, caption: "Judging round" },
+  { src: sih4, caption: "Grand finale portrait" },
+  { src: sih5, caption: "Working through the night" },
+  { src: sih6, caption: "SIH 2025 moments" },
 ];
 
 function Portfolio() {
@@ -126,8 +150,15 @@ function Portfolio() {
     <main id="top" className="min-h-screen scroll-smooth bg-background">
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
         <div className="mx-auto flex w-full items-center justify-between px-6 py-5 md:px-12 lg:px-20">
-          <a href="#top" className="eyebrow text-foreground">
-            Aditi Gavasane
+          <a href="#top" className="group flex items-center gap-3">
+            <img
+              src="/favicon-32x32.png"
+              alt="Aditi Gavasane logo"
+              width={24}
+              height={24}
+              className="h-6 w-6 object-contain transition-transform duration-300 group-hover:scale-110"
+            />
+            <span className="eyebrow text-foreground">Aditi Gavasane</span>
           </a>
           <nav className="flex items-center gap-4 md:gap-6">
             {navItems.map((n) => (
@@ -250,7 +281,7 @@ function Portfolio() {
                 loading="lazy"
                 width={900}
                 height={1100}
-                className="h-64 w-56 shrink-0 object-cover md:h-72 md:w-64"
+                className="h-64 w-56 shrink-0 cursor-pointer object-cover transition-transform duration-300 hover:scale-[1.02] md:h-72 md:w-64"
               />
             ))}
           </div>
@@ -277,37 +308,101 @@ function Portfolio() {
       <section id="contact" className="border-t border-border">
         <div className="grid w-full gap-14 px-6 py-20 md:grid-cols-2 md:px-12 lg:px-20 md:py-28">
           <div>
-            <p className="eyebrow mb-6">05 — Contact</p>
+            <p className="eyebrow mb-6">05 — Contact & Connect</p>
             <h2 className="display max-w-lg text-3xl md:text-[2.6rem]">
               Let&rsquo;s build something thoughtful together.
             </h2>
-            <a
-              href={`mailto:${EMAIL}`}
-              className="display mt-8 inline-block text-xl underline underline-offset-8 transition-opacity hover:opacity-60 md:text-2xl"
-            >
-              {EMAIL}
-            </a>
-            <p className="eyebrow mt-6">Maharashtra, India</p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
+              Open to opportunities, collaborations, and conversations. Reach out directly or connect across platforms.
+            </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="border border-border px-4 py-2 text-xs tracking-wide text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
-                >
-                  {s.label}
-                </a>
-              ))}
+            {/* Direct Contact Channels */}
+            <div className="mt-8 space-y-4">
+              <a
+                href={`mailto:${contactDetails.email}`}
+                className="group flex items-center gap-3 text-sm text-foreground transition-colors hover:text-muted-foreground md:text-base"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-border transition-colors group-hover:border-foreground group-hover:bg-secondary">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <div>
+                  <p className="text-[0.68rem] font-medium uppercase tracking-widest text-muted-foreground">Email</p>
+                  <span className="underline underline-offset-4">{contactDetails.email}</span>
+                </div>
+              </a>
+
+              <a
+                href={`tel:${contactDetails.phone.replace(/\s+/g, "")}`}
+                className="group flex items-center gap-3 text-sm text-foreground transition-colors hover:text-muted-foreground md:text-base"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-border transition-colors group-hover:border-foreground group-hover:bg-secondary">
+                  <Phone className="h-4 w-4" />
+                </span>
+                <div>
+                  <p className="text-[0.68rem] font-medium uppercase tracking-widest text-muted-foreground">Phone</p>
+                  <span>{contactDetails.phone}</span>
+                </div>
+              </a>
+
+              <div className="flex items-center gap-3 text-sm text-foreground md:text-base">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-border">
+                  <MapPin className="h-4 w-4" />
+                </span>
+                <div>
+                  <p className="text-[0.68rem] font-medium uppercase tracking-widest text-muted-foreground">Address / Location</p>
+                  <span className="text-muted-foreground">{contactDetails.address}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Social / Developer Links */}
+            <div className="mt-10">
+              <p className="eyebrow mb-4">Profiles & Links</p>
+              <div className="flex flex-wrap gap-3">
+                {socials.map((s) => {
+                  const Icon = s.icon;
+                  return (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="group inline-flex items-center gap-2 border border-border px-4 py-2.5 text-xs tracking-wide text-foreground transition-all hover:border-foreground hover:bg-secondary"
+                    >
+                      <Icon className="h-3.5 w-3.5 text-muted-foreground transition-colors group-hover:text-foreground" />
+                      <span>{s.label}</span>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
           <FeedbackForm />
         </div>
-        <div className="w-full px-6 pb-10 md:px-12 lg:px-20">
+        <div className="flex flex-col items-start justify-between gap-4 border-t border-border px-6 py-8 md:flex-row md:items-center md:px-12 lg:px-20">
           <p className="eyebrow">© {new Date().getFullYear()} Aditi Gavasane</p>
+          <div className="flex flex-wrap gap-6 text-xs text-muted-foreground">
+            {socials
+              .filter((s) => s.label !== "Resume")
+              .map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-foreground"
+                >
+                  {s.label}
+                </a>
+              ))}
+            <a
+              href={`mailto:${contactDetails.email}`}
+              className="transition-colors hover:text-foreground"
+            >
+              Email
+            </a>
+          </div>
         </div>
       </section>
     </main>
@@ -327,7 +422,7 @@ function SelectedWork() {
             key={p.title}
             className="group flex flex-col border border-border bg-secondary transition-colors hover:border-foreground"
           >
-            <div className="aspect-square overflow-hidden">
+            <div className="aspect-[16/10] overflow-hidden">
               <img
                 src={projectPhone}
                 alt={p.title}
