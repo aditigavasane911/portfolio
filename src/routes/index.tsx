@@ -125,7 +125,7 @@ function Portfolio() {
   return (
     <main id="top" className="min-h-screen scroll-smooth bg-background">
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5 md:px-10">
+        <div className="mx-auto flex w-full items-center justify-between px-6 py-5 md:px-12 lg:px-20">
           <a href="#top" className="eyebrow text-foreground">
             Aditi Gavasane
           </a>
@@ -145,8 +145,8 @@ function Portfolio() {
       </header>
 
       {/* 00 — Hero */}
-      <section className="flex min-h-[calc(100svh-81px)] items-center justify-center px-6 py-20 md:px-10">
-        <div className="rise mx-auto w-full max-w-5xl text-center">
+      <section className="flex min-h-[calc(100svh-81px)] items-center justify-center px-6 py-20 md:px-12 lg:px-20">
+        <div className="rise mx-auto w-full text-center">
           <p className="eyebrow leading-relaxed">
             Prompt Engineer · Generative AI · Full-Stack Developer · Freelancer · Mobile Software
             Developer
@@ -163,7 +163,7 @@ function Portfolio() {
       </section>
 
       {/* 01 — About */}
-      <section id="about" className="mx-auto max-w-5xl px-6 py-20 md:px-10 md:py-28">
+      <section id="about" className="w-full px-6 py-20 md:px-12 lg:px-20 md:py-28">
         <p className="eyebrow mb-8">01 — About</p>
         <div className="rise grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-14">
           <div className="order-1 md:order-1">
@@ -202,7 +202,7 @@ function Portfolio() {
       <SelectedWork />
 
       {/* 03 — Certifications */}
-      <section id="certifications" className="mx-auto max-w-5xl px-6 pb-24 md:px-10 md:pb-32">
+      <section id="certifications" className="w-full px-6 pb-24 md:px-12 lg:px-20 md:pb-32">
         <p className="eyebrow mb-6">03 — Certifications</p>
         <h2 className="display max-w-2xl text-3xl md:text-[2.6rem]">
           Certifications I have earned along the way.
@@ -234,7 +234,7 @@ function Portfolio() {
 
       {/* 04 — Hackathon */}
       <section id="hackathons" className="overflow-hidden py-8 pb-28 md:pb-36">
-        <div className="mx-auto mb-10 flex max-w-5xl flex-col gap-4 px-6 md:flex-row md:items-end md:justify-between md:px-10">
+        <div className="mb-10 flex w-full flex-col gap-4 px-6 md:flex-row md:items-end md:justify-between md:px-12 lg:px-20">
           <p className="eyebrow">04 — National Level Hackathon</p>
 
           <h2 className="display text-3xl md:text-[2.6rem]">SIH Grand Finale 2025</h2>
@@ -256,7 +256,7 @@ function Portfolio() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 max-w-5xl px-6 md:px-10">
+        <div className="mt-10 w-full px-6 md:px-12 lg:px-20">
           <p className="display max-w-2xl text-base leading-relaxed md:text-lg">
             Selected as a{" "}
             <strong className="font-semibold">Smart India Hackathon 2025 Grand Finale</strong> team,
@@ -275,7 +275,7 @@ function Portfolio() {
 
       {/* 05 — Contact */}
       <section id="contact" className="border-t border-border">
-        <div className="mx-auto grid max-w-5xl gap-14 px-6 py-20 md:grid-cols-2 md:px-10 md:py-28">
+        <div className="grid w-full gap-14 px-6 py-20 md:grid-cols-2 md:px-12 lg:px-20 md:py-28">
           <div>
             <p className="eyebrow mb-6">05 — Contact</p>
             <h2 className="display max-w-lg text-3xl md:text-[2.6rem]">
@@ -306,7 +306,7 @@ function Portfolio() {
 
           <FeedbackForm />
         </div>
-        <div className="mx-auto max-w-5xl px-6 pb-10 md:px-10">
+        <div className="w-full px-6 pb-10 md:px-12 lg:px-20">
           <p className="eyebrow">© {new Date().getFullYear()} Aditi Gavasane</p>
         </div>
       </section>
@@ -319,7 +319,7 @@ function SelectedWork() {
   const shown = expanded ? projects : projects.slice(0, featuredCount);
 
   return (
-    <section id="work" className="mx-auto max-w-5xl px-6 pb-24 md:px-10 md:pb-32">
+    <section id="work" className="w-full px-6 pb-24 md:px-12 lg:px-20 md:pb-32">
       <p className="eyebrow mb-12">02 — Selected Work</p>
       <div className="grid gap-6 md:grid-cols-3">
         {shown.map((p) => (
