@@ -2,7 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useHydrated } from "@tanstack/react-router";
 
-import { ExternalLink, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import {
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Github,
+  Globe,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  X,
+} from "lucide-react";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
 import projectPhone from "@/assets/project-dark-phone.jpg";
@@ -101,36 +113,142 @@ const socials = [
   },
 ];
 
-const projects = [
+export interface ProjectItem {
+  id: string;
+  tags: string;
+  title: string;
+  body: string;
+  overview: string;
+  features: string[];
+  techStack: string[];
+  images: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  role?: string;
+}
+
+const projects: ProjectItem[] = [
   {
+    id: "ai-prompt-toolkit",
     tags: "Generative AI · Prompt Engineering",
     title: "AI Prompt Optimization Toolkit",
     body: "A tested library of prompt templates for stronger, more reliable LLM output across leading AI platforms.",
+    overview:
+      "An end-to-end prompt engineering framework that evaluates, benchmarks, and optimizes prompt variations across major LLMs (GPT-4, Claude 3.5, Gemini). Enforces deterministic structured output, prevents hallucinations, and reduces token overhead for production LLM systems.",
+    features: [
+      "Dynamic prompt templating with variable interpolation and system role tuning",
+      "Automated evaluation benchmark suites for output reliability and correctness",
+      "Metrics tracking for token usage, latency optimization, and cost savings",
+      "Direct code template exports to Python, TypeScript, and REST APIs",
+    ],
+    techStack: ["Python", "OpenAI API", "LangChain", "FastAPI", "React", "Tailwind CSS"],
+    images: [projectPhone, sih3, sih5],
+    liveUrl: "https://github.com/aditigavasane911",
+    githubUrl: "https://github.com/aditigavasane911",
+    role: "Lead Prompt Engineer & System Architect",
   },
   {
+    id: "travon-ai",
     tags: "AI Product · Python · JavaScript",
     title: "Travon — AI Tour Management",
     body: "A smart tour platform concept with live tracking, safety alerts, an admin dashboard, and AI-powered planning workflows.",
+    overview:
+      "Built as our Smart India Hackathon 2025 Grand Finale project under the Ministry of Education. Travon is an AI-driven pilgrim and tourist crowd management platform built to prevent stampedes and ensure real-time security at India's highest-density gatherings, featuring live geospatial crowd tracking, SOS distress broadcasting, and autonomous AI queue dispatch.",
+    features: [
+      "Real-time GPS crowd density heatmap and intelligent detour routing",
+      "One-tap emergency SOS distress beacon broadcasted to emergency responders",
+      "AI-driven dynamic itinerary scheduling and pilgrim queue management",
+      "Comprehensive administration dashboard for city authorities and disaster response",
+    ],
+    techStack: [
+      "Python",
+      "React",
+      "Node.js",
+      "Leaflet / Maps API",
+      "FastAPI",
+      "MongoDB",
+      "Tailwind CSS",
+    ],
+    images: [projectPhone, sih2, sih1, sih4],
+    liveUrl: "https://github.com/aditigavasane911",
+    githubUrl: "https://github.com/aditigavasane911",
+    role: "Product Designer, Backend & AI Developer",
   },
   {
+    id: "map-social",
     tags: "Full-Stack · React · MongoDB",
     title: "MAP — Social Media Platform",
     body: "A real-time social platform with secure authentication, profiles, feeds, and a full-stack React, Node.js, and MongoDB build.",
+    overview:
+      "A feature-rich social media networking application designed with real-time interactivity at its core. Features authenticated user profiles, multimedia sharing, interactive post discussions, and dynamic social feeds built on modern full-stack web standards.",
+    features: [
+      "Secure JWT user authentication, session control, and personal profiles",
+      "Multimedia post authoring with instant liking, bookmarking, and nested comments",
+      "Live notifications for social activity and connection requests",
+      "Responsive editorial layout with fluid micro-interactions and dark mode",
+    ],
+    techStack: ["React", "Node.js", "Express", "MongoDB", "Cloudinary", "Tailwind CSS"],
+    images: [projectPhone, sih4, sih6],
+    liveUrl: "https://github.com/aditigavasane911",
+    githubUrl: "https://github.com/aditigavasane911",
+    role: "Full-Stack Web Developer",
   },
   {
+    id: "multi-agent-research",
     tags: "AI · LLMs · RAG",
     title: "Multi-Agent Research Assistant",
     body: "A multi-agent system built on LLMs and RAG that retrieves, synthesizes, and cites source material for research tasks.",
+    overview:
+      "An autonomous multi-agent research workflow where collaborative AI agents (Planner, Deep Researcher, and Synthesizer) parse academic papers, query vector indexes, cross-verify empirical claims, and generate synthesized literature reviews with traceable citations.",
+    features: [
+      "Collaborative multi-agent state orchestration using LangGraph",
+      "Hybrid dense and sparse vector retrieval (RAG) for deep document synthesis",
+      "Automated factual verification and source citation generation",
+      "Exportable formatted research briefs in Markdown and PDF formats",
+    ],
+    techStack: ["Python", "LangGraph", "ChromaDB", "LlamaIndex", "OpenAI API", "FastAPI"],
+    images: [projectPhone, sih5, sih1],
+    liveUrl: "https://github.com/aditigavasane911",
+    githubUrl: "https://github.com/aditigavasane911",
+    role: "AI & RAG Pipeline Developer",
   },
   {
+    id: "in-app-copilot",
     tags: "AI Assistant · Copilot",
     title: "In-App AI Copilot",
     body: "Context-aware AI assistance embedded in a web app, answering user questions and taking actions on their behalf.",
+    overview:
+      "An intelligent in-app companion widget embedded into web applications. Capable of understanding on-screen UI context, guiding users through complex flows, answering application-specific queries, and executing safe parameterized actions on the user's behalf.",
+    features: [
+      "Real-time DOM context extraction for situated conversational understanding",
+      "Structured function-calling to automate multi-step user interface workflows",
+      "Streaming markdown output with low-latency server-sent events",
+      "Client-side session memory preserving local context across views",
+    ],
+    techStack: ["TypeScript", "React", "OpenAI SDK", "Tailwind CSS", "WebSockets"],
+    images: [projectPhone, sih3, sih2],
+    liveUrl: "https://github.com/aditigavasane911",
+    githubUrl: "https://github.com/aditigavasane911",
+    role: "Frontend & AI Integration Engineer",
   },
   {
+    id: "open-source-ml",
     tags: "ML · Open Source",
     title: "Open Source ML Toolkit",
     body: "Contributions to open source ML tooling — bug fixes, docs, and small features shipped to upstream repos.",
+    overview:
+      "Active open-source contributions focusing on developer experience in machine learning pipelines, including optimized batch tensor loaders, GPU memory benchmark utilities, regression test suites, and interactive developer guides.",
+    features: [
+      "Batch data processing performance enhancements with parallel multi-threading",
+      "Extensive tutorial guides and runnable code examples for new contributors",
+      "Comprehensive unit test coverage and automated GitHub Actions CI pipelines",
+      "Community issue triage and prompt bug resolution",
+    ],
+    techStack: ["Python", "PyTorch", "NumPy", "Git", "GitHub Actions", "Sphinx"],
+    images: [projectPhone, sih6, sih4],
+    liveUrl: "https://github.com/aditigavasane911",
+    githubUrl: "https://github.com/aditigavasane911",
+    role: "Open Source Contributor",
   },
 ];
 
@@ -150,14 +268,16 @@ function Portfolio() {
     <main id="top" className="min-h-screen scroll-smooth bg-background">
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
         <div className="mx-auto flex w-full items-center justify-between px-6 py-5 md:px-12 lg:px-20">
-          <a href="#top" className="group flex items-center gap-3">
-            <img
-              src="/favicon-32x32.png"
-              alt="Aditi Gavasane logo"
-              width={24}
-              height={24}
-              className="h-6 w-6 object-contain transition-transform duration-300 group-hover:scale-110"
-            />
+          <a href="#top" className="group flex items-center gap-3.5">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-white shadow-xs transition-transform duration-300 group-hover:scale-105">
+              <img
+                src="/logo.png"
+                alt="Aditi Gavasane logo"
+                width={40}
+                height={40}
+                className="h-full w-full object-contain p-1"
+              />
+            </div>
             <span className="eyebrow text-foreground">Aditi Gavasane</span>
           </a>
           <nav className="flex items-center gap-4 md:gap-6">
@@ -411,47 +531,284 @@ function Portfolio() {
 
 function SelectedWork() {
   const [expanded, setExpanded] = useState(false);
+  const [activeProject, setActiveProject] = useState<ProjectItem | null>(null);
   const shown = expanded ? projects : projects.slice(0, featuredCount);
 
   return (
     <section id="work" className="w-full px-6 pb-24 md:px-12 lg:px-20 md:pb-32">
-      <p className="eyebrow mb-12">02 — Selected Work</p>
-      <div className="grid gap-6 md:grid-cols-3">
-        {shown.map((p) => (
-          <article
-            key={p.title}
-            className="group flex flex-col border border-border bg-secondary transition-colors hover:border-foreground"
+      {/* Constrained container for ideal card widths */}
+      <div className="max-w-6xl">
+        <p className="eyebrow mb-12">02 — Selected Work</p>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {shown.map((p) => (
+            <article
+              key={p.title}
+              onClick={() => setActiveProject(p)}
+              className="group flex cursor-pointer flex-col border border-border bg-secondary transition-all duration-300 hover:-translate-y-1 hover:border-foreground hover:shadow-xl"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden">
+                <img
+                  src={p.images[0] || projectPhone}
+                  alt={p.title}
+                  loading="lazy"
+                  width={1200}
+                  height={1200}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-background/0 transition-colors duration-300 group-hover:bg-background/25">
+                  <span className="flex translate-y-2 items-center gap-1.5 border border-border bg-background/95 px-3.5 py-1.5 text-xs font-medium tracking-wide text-foreground opacity-0 shadow-sm backdrop-blur transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    View Details & Gallery <ExternalLink className="h-3 w-3" />
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <p className="eyebrow">{p.tags}</p>
+                <h2 className="display mt-2 text-xl md:text-[1.35rem]">{p.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+                <div className="mt-5 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted-foreground">
+                  <span className="font-mono text-[0.7rem] text-muted-foreground">
+                    {p.images.length} {p.images.length === 1 ? "picture" : "pictures"}
+                  </span>
+                  <span className="font-medium text-foreground underline underline-offset-4 transition-opacity group-hover:opacity-75">
+                    Open Project &rarr;
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {projects.length > featuredCount && (
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            className="mt-10 inline-flex items-center gap-2 border border-border px-5 py-3 text-xs tracking-wide text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
           >
-            <div className="aspect-[16/10] overflow-hidden">
-              <img
-                src={projectPhone}
-                alt={p.title}
-                loading="lazy"
-                width={1200}
-                height={1200}
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-            </div>
-            <div className="flex flex-1 flex-col p-5">
-              <p className="eyebrow">{p.tags}</p>
-              <h2 className="display mt-2 text-xl md:text-[1.35rem]">{p.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-            </div>
-          </article>
-        ))}
+            {expanded ? "See less" : "See more"}
+            <span aria-hidden="true">{expanded ? "↑" : "↓"}</span>
+          </button>
+        )}
       </div>
 
-      {projects.length > featuredCount && (
-        <button
-          type="button"
-          onClick={() => setExpanded((v) => !v)}
-          className="mt-10 inline-flex items-center gap-2 border border-border px-5 py-3 text-xs tracking-wide text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
-        >
-          {expanded ? "See less" : "See more"}
-          <span aria-hidden="true">{expanded ? "↑" : "↓"}</span>
-        </button>
+      {activeProject && (
+        <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
       )}
     </section>
+  );
+}
+
+function ProjectModal({
+  project,
+  onClose,
+}: {
+  project: ProjectItem;
+  onClose: () => void;
+}) {
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  // Close on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  // Lock body scroll while modal is active
+  useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+
+  const nextImage = () => {
+    setActiveImageIndex((prev) => (prev + 1) % project.images.length);
+  };
+
+  const prevImage = () => {
+    setActiveImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+  };
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-project-title"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-background/80 p-3 backdrop-blur-md sm:p-6 md:p-8"
+      onClick={onClose}
+    >
+      <div
+        className="relative my-auto flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden border border-border bg-card shadow-2xl md:flex-row"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close project details"
+          className="absolute right-4 top-4 z-30 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background/90 text-foreground transition-all hover:scale-105 hover:bg-secondary"
+        >
+          <X className="h-4 w-4" />
+        </button>
+
+        {/* LEFT: Shopping App Style Picture Gallery */}
+        <div className="flex flex-col border-b border-border bg-secondary/30 p-5 md:w-[50%] md:border-b-0 md:border-r md:p-7">
+          {/* Main Large Picture Display */}
+          <div className="relative aspect-[4/3] w-full overflow-hidden border border-border bg-secondary">
+            <img
+              src={project.images[activeImageIndex] || projectPhone}
+              alt={`${project.title} screenshot ${activeImageIndex + 1}`}
+              className="h-full w-full object-cover transition-all duration-300"
+            />
+
+            {/* Picture Counter */}
+            <div className="absolute bottom-3 right-3 rounded border border-border/50 bg-background/90 px-2.5 py-1 text-[0.68rem] font-medium tracking-wide text-foreground backdrop-blur">
+              {activeImageIndex + 1} / {project.images.length}
+            </div>
+
+            {/* Navigation Arrows for Multiple Images */}
+            {project.images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={prevImage}
+                  aria-label="Previous picture"
+                  className="absolute left-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-border/60 bg-background/85 text-foreground backdrop-blur transition-transform hover:scale-110"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={nextImage}
+                  aria-label="Next picture"
+                  className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-border/60 bg-background/85 text-foreground backdrop-blur transition-transform hover:scale-110"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Clickable Picture Thumbnails */}
+          {project.images.length > 1 && (
+            <div className="mt-4 flex gap-2.5 overflow-x-auto pb-1">
+              {project.images.map((img, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setActiveImageIndex(idx)}
+                  className={`relative aspect-square h-16 w-16 shrink-0 overflow-hidden border transition-all ${
+                    idx === activeImageIndex
+                      ? "scale-105 border-foreground ring-2 ring-foreground/25"
+                      : "border-border opacity-60 hover:opacity-100"
+                  }`}
+                >
+                  <img
+                    src={img}
+                    alt={`Thumbnail ${idx + 1}`}
+                    className="h-full w-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
+
+          <p className="mt-3 text-center text-xs text-muted-foreground">
+            Tap thumbnail or arrows to view all project pictures
+          </p>
+        </div>
+
+        {/* RIGHT: Detailed Information & Live Links */}
+        <div className="flex flex-1 flex-col overflow-y-auto p-6 md:p-8">
+          <p className="eyebrow">{project.tags}</p>
+          <h2 id="modal-project-title" className="display mt-2 text-2xl md:text-3xl">
+            {project.title}
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.body}</p>
+
+          {/* Detailed Overview */}
+          <div className="mt-6 border-t border-border pt-5">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Overview & Solution
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/90">{project.overview}</p>
+          </div>
+
+          {/* Key Features List */}
+          {project.features && project.features.length > 0 && (
+            <div className="mt-6 border-t border-border pt-5">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Key Highlights
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm text-foreground/90">
+                {project.features.map((f, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-foreground" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Tech Stack Pills */}
+          {project.techStack && project.techStack.length > 0 && (
+            <div className="mt-6 border-t border-border pt-5">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Technologies & Tools
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="border border-border bg-secondary/80 px-2.5 py-1 text-xs text-foreground"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Role / Contribution */}
+          {project.role && (
+            <div className="mt-5 text-xs text-muted-foreground">
+              <span className="font-semibold text-foreground">Role: </span>
+              {project.role}
+            </div>
+          )}
+
+          {/* CTA Action Buttons */}
+          <div className="mt-8 flex flex-wrap gap-3 border-t border-border pt-6">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex min-w-[150px] flex-1 items-center justify-center gap-2 bg-foreground px-5 py-3 text-xs font-medium tracking-wide text-background transition-opacity hover:opacity-85"
+              >
+                <Globe className="h-4 w-4" />
+                Live Deployed Site
+              </a>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center justify-center gap-2 border border-border px-5 py-3 text-xs font-medium tracking-wide text-foreground transition-colors hover:border-foreground hover:bg-secondary"
+              >
+                <Github className="h-4 w-4" />
+                View Code
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
