@@ -3,6 +3,7 @@
 @import "tw-animate-css";
 @import "./components/Loader.css";
 @import "./components/Certifications.css";
+@import "./components/TextReveal.css";
 
 @custom-variant dark (&:is(.dark *));
 

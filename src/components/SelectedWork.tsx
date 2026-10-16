@@ -5,6 +5,8 @@ import projectPhone from "@/assets/project-dark-phone.jpg";
 import { ProjectModal } from "@/components/ProjectModal";
 import { featuredProjectCount, projects, type ProjectItem } from "@/data/content";
 
+import { TextReveal } from "@/components/TextReveal";
+
 export function SelectedWork() {
   const [expanded, setExpanded] = useState(false);
   const [activeProject, setActiveProject] = useState<ProjectItem | null>(null);
@@ -13,11 +15,15 @@ export function SelectedWork() {
   return (
     <section id="work" className="w-full px-6 pb-24 md:px-12 lg:px-20 md:pb-32">
       <div className="max-w-6xl">
-        <p className="eyebrow mb-12">02 — Selected Work</p>
+        <TextReveal as="p" delay={0} className="eyebrow mb-12">
+          02 — Selected Work
+        </TextReveal>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {visibleProjects.map((project) => (
-            <article
+          {visibleProjects.map((project, idx) => (
+            <TextReveal
               key={project.title}
+              as="article"
+              delay={(idx % 3) * 100}
               onClick={() => setActiveProject(project)}
               className="group flex cursor-pointer flex-col border border-border bg-secondary transition-all duration-300 hover:-translate-y-1 hover:border-foreground hover:shadow-xl"
             >
@@ -49,19 +55,21 @@ export function SelectedWork() {
                   </span>
                 </div>
               </div>
-            </article>
+            </TextReveal>
           ))}
         </div>
 
         {projects.length > featuredProjectCount && (
-          <button
-            type="button"
-            onClick={() => setExpanded((value) => !value)}
-            className="mt-10 inline-flex items-center gap-2 border border-border px-5 py-3 text-xs tracking-wide text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
-          >
-            {expanded ? "See less" : "See more"}
-            <span aria-hidden="true">{expanded ? "↑" : "↓"}</span>
-          </button>
+          <TextReveal delay={120}>
+            <button
+              type="button"
+              onClick={() => setExpanded((value) => !value)}
+              className="mt-10 inline-flex items-center gap-2 border border-border px-5 py-3 text-xs tracking-wide text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+            >
+              {expanded ? "See less" : "See more"}
+              <span aria-hidden="true">{expanded ? "↑" : "↓"}</span>
+            </button>
+          </TextReveal>
         )}
       </div>
 

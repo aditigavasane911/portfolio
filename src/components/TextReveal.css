@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Premium Scroll-Triggered Text Reveal System
+   Smooth opacity and subtle upward translation (24px)
+   Custom natural easing curve, staggered timing, and viewport re-triggering
+   Respects prefers-reduced-motion and zero layout shifts
+   ========================================================================== */
+
+.reveal-item {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance, 24px), 0);
+  transition:
+    opacity var(--reveal-duration, 650ms) cubic-bezier(0.16, 1, 0.3, 1),
+    transform var(--reveal-duration, 650ms) cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+/* Revealed state when element enters the viewport */
+.reveal-item.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* When exiting viewport, reset without delay so it is instantly primed for re-entry */
+.reveal-item:not(.is-revealed) {
+  transition-duration: 200ms;
+  transition-delay: 0ms;
+}
+
+/* Ensure inline elements can execute 3D/2D transforms properly */
+span.reveal-item {
+  display: inline-block;
+}
+
+/* Accessibility: Full fallback for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item,
+  .reveal-item.is-revealed,
+  .reveal-item:not(.is-revealed) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

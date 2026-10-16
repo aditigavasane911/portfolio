@@ -2,6 +2,7 @@ import { CheckCircle2, ChevronLeft, ChevronRight, Github, Globe, X } from "lucid
 import { useEffect, useState, type ReactNode } from "react";
 
 import projectPhone from "@/assets/project-dark-phone.jpg";
+import { TextReveal } from "@/components/TextReveal";
 import { type ProjectItem } from "@/data/content";
 
 type ProjectModalProps = {
@@ -131,11 +132,24 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         </div>
 
         <div className="flex flex-1 flex-col overflow-y-auto p-6 md:p-8">
-          <p className="eyebrow">{project.tags}</p>
-          <h2 id="modal-project-title" className="display mt-2 text-2xl md:text-3xl">
+          <TextReveal as="p" delay={0} className="eyebrow">
+            {project.tags}
+          </TextReveal>
+          <TextReveal
+            as="h2"
+            id="modal-project-title"
+            delay={80}
+            className="display mt-2 text-2xl md:text-3xl"
+          >
             {project.title}
-          </h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.body}</p>
+          </TextReveal>
+          <TextReveal
+            as="p"
+            delay={140}
+            className="mt-2 text-sm leading-relaxed text-muted-foreground"
+          >
+            {project.body}
+          </TextReveal>
 
           <ModalSection title="Overview & Solution">
             <p className="mt-2 text-sm leading-relaxed text-foreground/90">{project.overview}</p>

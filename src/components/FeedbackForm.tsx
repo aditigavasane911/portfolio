@@ -1,6 +1,8 @@
 import { useHydrated } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 
+import { TextReveal } from "@/components/TextReveal";
+
 const FEEDBACK_COUNT_KEY = "aditi-portfolio-feedback-count";
 
 export function FeedbackForm() {
@@ -38,8 +40,12 @@ export function FeedbackForm() {
 
   return (
     <form onSubmit={handleSubmit} className="border border-border p-6 md:p-8">
-      <p className="eyebrow">Feedback</p>
-      <h3 className="display mt-3 text-2xl">How was your visit?</h3>
+      <TextReveal as="p" delay={0} className="eyebrow">
+        Feedback
+      </TextReveal>
+      <TextReveal as="h3" delay={90} className="display mt-3 text-2xl">
+        How was your visit?
+      </TextReveal>
 
       <div className="mt-6 flex items-center gap-2">
         <span className="text-xs tabular-nums text-muted-foreground">({hydrated ? count : 0})</span>

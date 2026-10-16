@@ -1,12 +1,17 @@
+import { TextReveal } from "@/components/TextReveal";
 import { gallery } from "@/data/content";
 
 export function Hackathon() {
   return (
     <section id="hackathons" className="overflow-hidden pt-24 md:pt-32 pb-28 md:pb-36">
       <div className="mb-10 flex w-full flex-col gap-4 px-6 md:flex-row md:items-end md:justify-between md:px-12 lg:px-20">
-        <p className="eyebrow">04 — National Level Hackathon</p>
+        <TextReveal as="p" delay={0} className="eyebrow">
+          04 — National Level Hackathon
+        </TextReveal>
 
-        <h2 className="display text-3xl md:text-[2.6rem]">SIH Grand Finale 2025</h2>
+        <TextReveal as="h2" delay={100} className="display text-3xl md:text-[2.6rem]">
+          SIH Grand Finale 2025
+        </TextReveal>
       </div>
 
       <div className="relative">
@@ -26,7 +31,11 @@ export function Hackathon() {
       </div>
 
       <div className="mt-10 w-full px-6 md:px-12 lg:px-20">
-        <p className="display max-w-2xl text-base leading-relaxed md:text-lg">
+        <TextReveal
+          as="p"
+          delay={160}
+          className="display max-w-2xl text-base leading-relaxed md:text-lg"
+        >
           Selected as a{" "}
           <strong className="font-semibold">Smart India Hackathon 2025 Grand Finale</strong> team,
           where we built <strong className="font-semibold">Travon</strong>, an AI-powered pilgrim
@@ -38,7 +47,7 @@ export function Hackathon() {
           </strong>{" "}
           and <strong className="font-semibold">AICTE</strong> under the Ministry of Education,
           Government of India.
-        </p>
+        </TextReveal>
       </div>
     </section>
   );

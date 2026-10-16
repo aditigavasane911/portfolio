@@ -2,6 +2,7 @@ import { ExternalLink, FileText, Github, Linkedin, Mail } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
 import contactAuroraBorder from "@/assets/contact-aurora-border.jpg";
+import { TextReveal } from "@/components/TextReveal";
 import { contactDetails } from "@/data/content";
 
 function NewsletterColumn() {
@@ -127,10 +128,12 @@ export function Contact() {
 
       {/* 4 Columns matching reference design */}
       <div className="relative z-10 px-6 md:px-12 lg:px-20">
-        <p className="eyebrow mb-10 text-neutral-400">05 — Contact</p>
+        <TextReveal as="p" delay={0} className="eyebrow mb-10 text-neutral-400">
+          05 — Contact
+        </TextReveal>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
           {/* Column 1: Navigate (All Aditi's Navigation) */}
-          <div>
+          <TextReveal delay={80}>
             <h3 className="display italic text-2xl md:text-[1.75rem] text-white font-normal mb-5">
               Navigate
             </h3>
@@ -146,10 +149,10 @@ export function Contact() {
                 </li>
               ))}
             </ul>
-          </div>
+          </TextReveal>
 
           {/* Column 2: Focus Areas */}
-          <div>
+          <TextReveal delay={160}>
             <h3 className="display italic text-2xl md:text-[1.75rem] text-white font-normal mb-5">
               Focus Areas
             </h3>
@@ -160,10 +163,10 @@ export function Contact() {
                 </li>
               ))}
             </ul>
-          </div>
+          </TextReveal>
 
           {/* Column 3: Contact (Aditi's Details) */}
-          <div>
+          <TextReveal delay={240}>
             <h3 className="display italic text-2xl md:text-[1.75rem] text-white font-normal mb-5">
               Contact
             </h3>
@@ -186,20 +189,22 @@ export function Contact() {
               </div>
               <div className="text-neutral-400">{contactDetails.address}</div>
             </div>
-          </div>
+          </TextReveal>
 
           {/* Column 4: Newsletter */}
-          <NewsletterColumn />
+          <TextReveal delay={320}>
+            <NewsletterColumn />
+          </TextReveal>
         </div>
 
         {/* Bottom Bar with Copyright, Prominent Socials with Logos, and Action Pill */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
-          <p className="eyebrow text-neutral-500 shrink-0">
+          <TextReveal as="p" delay={80} className="eyebrow text-neutral-500 shrink-0">
             &copy; {new Date().getFullYear()} Aditi Gavasane
-          </p>
+          </TextReveal>
 
           {/* Prominent Socials & Resume with Logos */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+          <TextReveal delay={160} className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
             {footerSocials.map((item) => {
               const Icon = item.icon;
               return (
@@ -215,14 +220,16 @@ export function Contact() {
                 </a>
               );
             })}
-          </div>
+          </TextReveal>
 
-          <a
-            href="#top"
-            className="shrink-0 rounded-full bg-neutral-900 hover:bg-neutral-800 border border-neutral-700/80 px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-neutral-200 hover:text-white transition-all shadow-sm hover:border-neutral-500"
-          >
-            Back to top &uarr;
-          </a>
+          <TextReveal delay={240}>
+            <a
+              href="#top"
+              className="shrink-0 rounded-full bg-neutral-900 hover:bg-neutral-800 border border-neutral-700/80 px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-neutral-200 hover:text-white transition-all shadow-sm hover:border-neutral-500"
+            >
+              Back to top &uarr;
+            </a>
+          </TextReveal>
         </div>
       </div>
     </section>

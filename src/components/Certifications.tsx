@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { TextReveal } from "@/components/TextReveal";
 import "./Certifications.css";
 
 // ============================================================================
@@ -670,17 +671,25 @@ export function Certifications() {
       {/* 2. Top Heading (Center, Smaller, Tighter, Calmer) */}
       <div className="relative z-20 pt-1 sm:pt-2 px-6 text-center shrink-0">
         <h2 className="max-w-[1000px] mx-auto leading-[1.2] tracking-[-0.02em] text-[#efe9dd]">
-          <span className="inline-flex items-baseline justify-center flex-wrap gap-x-2.5 sm:gap-x-3">
+          <TextReveal
+            as="span"
+            delay={0}
+            className="inline-flex items-baseline justify-center flex-wrap gap-x-2.5 sm:gap-x-3"
+          >
             <span className="font-sans not-italic text-[clamp(28px,2.8vw,44px)] font-medium text-[#efe9dd] tracking-tight">
               Certifications
             </span>
             <span className="font-serif italic text-[clamp(19px,1.9vw,29px)] font-normal text-[#efe9dd]/85">
               — Proof of learning.
             </span>
-          </span>
-          <span className="block font-serif italic text-[clamp(19px,1.9vw,29px)] font-normal text-[#efe9dd]/80 mt-0.5">
+          </TextReveal>
+          <TextReveal
+            as="span"
+            delay={120}
+            className="block font-serif italic text-[clamp(19px,1.9vw,29px)] font-normal text-[#efe9dd]/80 mt-0.5"
+          >
             Credentials that move me forward.
-          </span>
+          </TextReveal>
         </h2>
       </div>
 
