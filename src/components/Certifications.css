@@ -1,0 +1,757 @@
+/* ==========================================================================
+   Certifications Carousel Styles
+   Warm charcoal palette, soft perimeter rainbow arc, calm layout
+   ========================================================================== */
+
+:root {
+  --cert-bg: #1c1b1a;
+  --cert-text: #efe9dd;
+  --cert-coral: #e0643a;
+  --cert-duration: 1000ms;
+  --cert-ease: cubic-bezier(0.7, 0, 0.2, 1);
+  --cert-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --cert-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --cert-exit-duration: 400ms;
+  /* Prism Ray Animation Tuning Variables */
+  --prism-speed: 22s;
+  --prism-opacity: 0.85;
+  --prism-blur: 35px;
+  --prism-wave-height: 48vh;
+}
+
+#certifications {
+  scroll-margin-top: 0;
+  --cursor-x: -9999px;
+  --cursor-y: -9999px;
+  --cursor-intensity: 0;
+}
+
+.cert-section {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  background-color: var(--cert-bg);
+  color: var(--cert-text);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: clamp(48px, 6.5vh, 60px);
+  padding-bottom: clamp(32px, 5vh, 56px);
+  user-select: none;
+}
+
+/* ==========================================================================
+   Interactive Cursor-Reactive Prism-Ray Light Effect
+   Multi-layered, GPU-accelerated iridescent refraction behind existing content
+   Illuminates gracefully under cursor proximity and fades out smoothly
+   Palette: Dominant golden & amber with subtle teal, blue & violet (Zero Pink)
+   ========================================================================== */
+/* ==========================================================================
+   Animated Prism-Ray Light Effect
+   Multi-layered, GPU-accelerated iridescent refraction behind existing content
+   Illuminates gracefully under cursor proximity and fades out smoothly
+   Palette: Dominant golden & amber with subtle teal, blue & violet (Zero Pink)
+   ========================================================================== */
+.cert-ambient-arc {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+/* Initial state: hidden before user scrolls to Certifications */
+.cert-ambient-arc.cert-prism-hidden {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  filter: blur(12px);
+}
+
+/* Appears once on scroll and stays visible permanently until refresh */
+.cert-ambient-arc.cert-prism-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+}
+
+/* Upper-Right Curved Prism Arc (Golden & amber dominant, subtle teal/blue/violet) */
+.cert-prism-top-arc {
+  position: absolute;
+  top: -16%;
+  right: -10%;
+  width: 62vw;
+  height: 78vh;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 148deg at 80% 25%,
+    transparent 0deg,
+    rgba(13, 148, 136, 0.22) 20deg,
+    rgba(99, 102, 241, 0.32) 45deg,
+    rgba(245, 158, 11, 0.42) 75deg,
+    rgba(251, 191, 36, 0.38) 105deg,
+    rgba(2, 132, 199, 0.22) 130deg,
+    transparent 160deg
+  );
+  filter: blur(52px);
+  opacity: 0.62;
+  mix-blend-mode: screen;
+  will-change: transform;
+  animation: cert-prism-arc-drift 16s ease-in-out infinite alternate;
+}
+
+@keyframes cert-prism-arc-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(-3%, 2%, 0) rotate(-2deg) scale(1.05);
+    opacity: 0.68;
+  }
+  100% {
+    transform: translate3d(1%, -2%, 0) rotate(1.5deg) scale(0.98);
+    opacity: 0.52;
+  }
+}
+
+/* Bottom Flowing Iridescent Prism Wave Container */
+.cert-prism-bottom-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--prism-wave-height, 48vh);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Base diffused chromatic glow */
+.cert-prism-glow-base {
+  position: absolute;
+  bottom: -15%;
+  left: -10%;
+  right: -10%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse 85% 55% at 50% 100%,
+    rgba(245, 158, 11, 0.48) 0%,
+    rgba(251, 191, 36, 0.36) 28%,
+    rgba(13, 148, 136, 0.22) 52%,
+    rgba(99, 102, 241, 0.2) 72%,
+    rgba(2, 132, 199, 0.12) 88%,
+    transparent 100%
+  );
+  filter: blur(var(--prism-blur, 35px));
+  opacity: var(--prism-opacity, 0.85);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  animation: cert-prism-glow-pulse 12s ease-in-out infinite alternate;
+}
+
+.cert-prism-glow-secondary {
+  position: absolute;
+  bottom: -22%;
+  left: 15%;
+  width: 70vw;
+  height: 80%;
+  background: radial-gradient(
+    ellipse 75% 45% at 50% 100%,
+    rgba(245, 158, 11, 0.4) 0%,
+    rgba(14, 165, 233, 0.26) 35%,
+    rgba(124, 58, 237, 0.2) 65%,
+    transparent 85%
+  );
+  filter: blur(45px);
+  opacity: 0.65;
+  mix-blend-mode: screen;
+  will-change: transform;
+  animation: cert-prism-glow-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes cert-prism-glow-pulse {
+  0% {
+    transform: translate3d(0, 0, 0) scaleY(1);
+    opacity: calc(var(--prism-opacity, 0.85) * 0.85);
+  }
+  50% {
+    transform: translate3d(-2%, -8px, 0) scaleY(1.1);
+    opacity: var(--prism-opacity, 0.85);
+  }
+  100% {
+    transform: translate3d(2%, 4px, 0) scaleY(0.96);
+    opacity: calc(var(--prism-opacity, 0.85) * 0.9);
+  }
+}
+
+@keyframes cert-prism-glow-drift {
+  0% {
+    transform: translate3d(-4%, 0, 0);
+  }
+  100% {
+    transform: translate3d(6%, -12px, 0);
+  }
+}
+
+/* Continuous Flowing SVG Wave Ribbon */
+.cert-prism-svg {
+  position: absolute;
+  bottom: -6%;
+  left: -20%;
+  width: 140%;
+  height: 100%;
+  mix-blend-mode: screen;
+  filter: blur(calc(var(--prism-blur, 35px) * 0.5));
+  opacity: var(--prism-opacity, 0.85);
+  will-change: transform;
+}
+
+.cert-prism-path-1 {
+  will-change: transform;
+  animation: cert-prism-wave-flow-1 var(--prism-speed, 22s) ease-in-out infinite alternate;
+  transform-origin: 50% 80%;
+}
+
+.cert-prism-path-2 {
+  will-change: transform;
+  opacity: 0.8;
+  animation: cert-prism-wave-flow-2 calc(var(--prism-speed, 22s) * 1.25) ease-in-out infinite alternate;
+  transform-origin: 50% 80%;
+}
+
+.cert-prism-path-specular {
+  will-change: transform, opacity;
+  filter: blur(3.5px) drop-shadow(0 0 10px rgba(255, 255, 255, 0.65));
+  opacity: 0.9;
+  animation: cert-prism-wave-specular var(--prism-speed, 22s) ease-in-out infinite alternate;
+  transform-origin: 50% 80%;
+}
+
+@keyframes cert-prism-wave-flow-1 {
+  0% {
+    transform: translate3d(0, 0, 0) scaleY(1) rotate(0deg);
+  }
+  30% {
+    transform: translate3d(-3%, -14px, 0) scaleY(1.12) rotate(-0.75deg);
+  }
+  70% {
+    transform: translate3d(2%, 8px, 0) scaleY(0.94) rotate(0.6deg);
+  }
+  100% {
+    transform: translate3d(-1%, -6px, 0) scaleY(1.04) rotate(-0.3deg);
+  }
+}
+
+@keyframes cert-prism-wave-flow-2 {
+  0% {
+    transform: translate3d(2%, 4px, 0) scaleY(0.95) rotate(0.5deg);
+  }
+  40% {
+    transform: translate3d(-4%, -10px, 0) scaleY(1.08) rotate(-0.6deg);
+  }
+  80% {
+    transform: translate3d(1%, 6px, 0) scaleY(1.02) rotate(0.4deg);
+  }
+  100% {
+    transform: translate3d(-2%, -4px, 0) scaleY(0.98) rotate(-0.2deg);
+  }
+}
+
+@keyframes cert-prism-wave-specular {
+  0% {
+    transform: translate3d(0, 0, 0) scaleY(1);
+    opacity: 0.75;
+  }
+  30% {
+    transform: translate3d(-3%, -14px, 0) scaleY(1.12);
+    opacity: 0.95;
+  }
+  70% {
+    transform: translate3d(2%, 8px, 0) scaleY(0.94);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(-1%, -6px, 0) scaleY(1.04);
+    opacity: 0.85;
+  }
+}
+
+/* Soft Chromatic Cursor Refraction Bloom (Ambient touch following cursor) */
+.cert-prism-cursor-spot {
+  position: absolute;
+  left: var(--cursor-x, -9999px);
+  top: var(--cursor-y, -9999px);
+  width: 480px;
+  height: 480px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(251, 191, 36, 0.22) 0%,
+    rgba(245, 158, 11, 0.14) 32%,
+    rgba(13, 148, 136, 0.08) 58%,
+    rgba(99, 102, 241, 0.05) 78%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  filter: blur(40px);
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 0;
+  will-change: left, top;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cert-prism-cursor-spot {
+    display: none !important;
+  }
+}
+
+/* Center Dark Vignette Mask (Keeps central content area clean dark warm charcoal) */
+.cert-arc-center-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 45%,
+    #1c1b1a 0%,
+    #1c1b1a 45%,
+    rgba(28, 27, 26, 0.7) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   3D Stage Container & Card Positioning
+   ========================================================================== */
+.cert-stage-container {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  perspective: 1200px;
+  perspective-origin: 35% 60%;
+  transform-style: preserve-3d;
+}
+
+/* Tablet Card Bezel Frame */
+.cert-card-bezel {
+  position: absolute;
+  aspect-ratio: 1.5 / 1;
+  background: linear-gradient(145deg, #2b2a29, #171615);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 20px;
+  padding: 9px;
+  box-shadow:
+    0 30px 65px -15px rgba(0, 0, 0, 0.85),
+    0 0 25px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  will-change: transform, opacity, filter;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .cert-card-bezel {
+    border-radius: 24px;
+    padding: 11px;
+  }
+}
+
+/* Inner Screen inside Bezel */
+.cert-card-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 13px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .cert-card-screen {
+    border-radius: 16px;
+  }
+}
+
+/* Desktop Layout (>= 1024px) */
+@media (min-width: 1024px) {
+  .cert-card-bezel {
+    left: 18%;
+    bottom: 2%;
+    top: auto;
+    right: auto;
+    width: clamp(320px, 34vw, 490px);
+  }
+
+  /* SLOT ACTIVE: bottom-left, large and fully sharp */
+  .cert-slot-active {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+    filter: blur(0px) grayscale(0);
+    z-index: 25;
+    pointer-events: auto;
+    transition:
+      transform var(--cert-duration) var(--cert-ease),
+      opacity var(--cert-duration) var(--cert-ease),
+      filter var(--cert-duration) var(--cert-ease);
+  }
+
+  /* SLOT NEAR: right side, mid-height (~45vw right, ~19vh up) */
+  .cert-slot-near {
+    transform: translate3d(45vw, -19vh, 0) scale(0.7);
+    opacity: 0.35;
+    filter: blur(6px) grayscale(0);
+    z-index: 15;
+    pointer-events: none;
+    transition:
+      transform var(--cert-duration) var(--cert-ease),
+      opacity var(--cert-duration) var(--cert-ease),
+      filter var(--cert-duration) var(--cert-ease);
+  }
+
+  /* SLOT FAR: top-middle (~30vw right, ~39vh up) */
+  .cert-slot-far {
+    transform: translate3d(30vw, -39vh, 0) scale(0.6);
+    opacity: 0.18;
+    filter: blur(10px) grayscale(0);
+    z-index: 10;
+    pointer-events: none;
+    transition:
+      transform var(--cert-duration) var(--cert-ease),
+      opacity var(--cert-duration) var(--cert-ease),
+      filter var(--cert-duration) var(--cert-ease);
+  }
+
+  /* SLOT EXIT: slides left, accelerating, fading out within 0.4s */
+  .cert-slot-exit {
+    transform: translate3d(-35vw, 0, 0) scale(0.95);
+    opacity: 0;
+    filter: blur(0px) grayscale(0.85);
+    z-index: 20;
+    pointer-events: none;
+    transition:
+      transform var(--cert-duration) var(--cert-ease-in),
+      opacity var(--cert-exit-duration) cubic-bezier(0.7, 0, 0.84, 0),
+      filter var(--cert-exit-duration) cubic-bezier(0.7, 0, 0.84, 0);
+  }
+
+  /* SLOT ENTER: waiting offscreen beyond Far, ready to fade in */
+  .cert-slot-enter {
+    transform: translate3d(34vw, -42vh, 0) scale(0.55);
+    opacity: 0;
+    filter: blur(12px) grayscale(0);
+    z-index: 5;
+    pointer-events: none;
+    transition: none;
+  }
+
+  .cert-slot-hidden {
+    transform: translate3d(34vw, -42vh, 0) scale(0.5);
+    opacity: 0;
+    filter: blur(14px);
+    z-index: 0;
+    pointer-events: none;
+    transition: none;
+  }
+}
+
+/* Tablet & Mobile (< 1024px) */
+@media (max-width: 1023px) {
+  .cert-card-bezel {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    width: clamp(280px, 78vw, 460px);
+  }
+
+  .cert-slot-active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+    z-index: 25;
+    pointer-events: auto;
+    transition:
+      transform var(--cert-duration) var(--cert-ease),
+      opacity var(--cert-duration) var(--cert-ease),
+      filter var(--cert-duration) var(--cert-ease);
+  }
+
+  .cert-slot-near {
+    transform: translate(25%, -50%) scale(0.74);
+    opacity: 0.35;
+    filter: blur(6px);
+    z-index: 15;
+    pointer-events: none;
+    transition:
+      transform var(--cert-duration) var(--cert-ease),
+      opacity var(--cert-duration) var(--cert-ease),
+      filter var(--cert-duration) var(--cert-ease);
+  }
+
+  .cert-slot-far {
+    transform: translate(50%, -50%) scale(0.6);
+    opacity: 0.18;
+    filter: blur(10px);
+    z-index: 10;
+    pointer-events: none;
+    transition:
+      transform var(--cert-duration) var(--cert-ease),
+      opacity var(--cert-duration) var(--cert-ease),
+      filter var(--cert-duration) var(--cert-ease);
+  }
+
+  .cert-slot-exit {
+    transform: translate(-150%, -50%) scale(0.9);
+    opacity: 0;
+    filter: blur(0px) grayscale(0.85);
+    z-index: 20;
+    pointer-events: none;
+    transition:
+      transform var(--cert-duration) var(--cert-ease-in),
+      opacity var(--cert-exit-duration) cubic-bezier(0.7, 0, 0.84, 0),
+      filter var(--cert-exit-duration) cubic-bezier(0.7, 0, 0.84, 0);
+  }
+
+  .cert-slot-enter,
+  .cert-slot-hidden {
+    transform: translate(60%, -50%) scale(0.5);
+    opacity: 0;
+    filter: blur(14px);
+    z-index: 0;
+    pointer-events: none;
+    transition: none;
+  }
+}
+
+/* Instant repositioning utility without animation */
+.cert-no-transition {
+  transition: none !important;
+}
+
+/* Pill Navigation Buttons */
+.cert-pill-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cert-pill-btn {
+  width: 84px;
+  height: 46px;
+  border-radius: 9999px;
+  border: 1px solid rgba(239, 233, 221, 0.75);
+  background: transparent;
+  color: #efe9dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .cert-pill-btn {
+    width: 90px;
+    height: 48px;
+  }
+}
+
+.cert-pill-btn:hover:not(:disabled),
+.cert-pill-btn:active:not(:disabled),
+.cert-pill-btn.is-pressed {
+  background-color: #efe9dd;
+  border-color: #efe9dd;
+  color: #1c1b1a;
+}
+
+.cert-pill-btn:hover:not(:disabled) svg {
+  transform: translateX(var(--nudge-dir, 0));
+}
+
+.cert-pill-btn svg {
+  transition: transform 0.2s ease;
+}
+
+/* Pressed dot indicator below button */
+.cert-pill-dot {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background-color: #efe9dd;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.cert-pill-btn:active ~ .cert-pill-dot,
+.cert-pill-btn.is-pressed ~ .cert-pill-dot {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.cert-pill-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Info Text Transitions (Description & Metadata Rows) */
+.cert-info-container {
+  will-change: transform, opacity, filter;
+}
+
+.cert-info-exit-next {
+  transform: translateX(-3vw) !important;
+  opacity: 0 !important;
+  filter: blur(2px) !important;
+  transition:
+    transform 400ms cubic-bezier(0.7, 0, 0.84, 0),
+    opacity 400ms cubic-bezier(0.7, 0, 0.84, 0),
+    filter 400ms ease !important;
+}
+
+.cert-info-exit-prev {
+  transform: translateX(3vw) !important;
+  opacity: 0 !important;
+  filter: blur(2px) !important;
+  transition:
+    transform 400ms cubic-bezier(0.7, 0, 0.84, 0),
+    opacity 400ms cubic-bezier(0.7, 0, 0.84, 0),
+    filter 400ms ease !important;
+}
+
+.cert-info-enter-start-next {
+  transform: translateX(3vw) !important;
+  opacity: 0 !important;
+  filter: blur(2px) !important;
+  transition: none !important;
+}
+
+.cert-info-enter-start-prev {
+  transform: translateX(-3vw) !important;
+  opacity: 0 !important;
+  filter: blur(2px) !important;
+  transition: none !important;
+}
+
+.cert-info-enter-active {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+  transition:
+    transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 500ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.cert-row-stagger-1,
+.cert-row-stagger-2,
+.cert-row-stagger-3 {
+  will-change: transform, opacity;
+  transition:
+    transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cert-info-exit-next .cert-row-stagger-1,
+.cert-info-exit-next .cert-row-stagger-2,
+.cert-info-exit-next .cert-row-stagger-3,
+.cert-info-exit-prev .cert-row-stagger-1,
+.cert-info-exit-prev .cert-row-stagger-2,
+.cert-info-exit-prev .cert-row-stagger-3 {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.cert-info-enter-start-next .cert-row-stagger-1,
+.cert-info-enter-start-next .cert-row-stagger-2,
+.cert-info-enter-start-next .cert-row-stagger-3 {
+  transform: translateX(1.5vw);
+  opacity: 0;
+  transition: none !important;
+}
+
+.cert-info-enter-start-prev .cert-row-stagger-1,
+.cert-info-enter-start-prev .cert-row-stagger-2,
+.cert-info-enter-start-prev .cert-row-stagger-3 {
+  transform: translateX(-1.5vw);
+  opacity: 0;
+  transition: none !important;
+}
+
+.cert-info-enter-active .cert-row-stagger-1 {
+  transform: translateX(0);
+  opacity: 1;
+  transition-delay: 50ms;
+}
+
+.cert-info-enter-active .cert-row-stagger-2 {
+  transform: translateX(0);
+  opacity: 1;
+  transition-delay: 100ms;
+}
+
+.cert-info-enter-active .cert-row-stagger-3 {
+  transform: translateX(0);
+  opacity: 1;
+  transition-delay: 150ms;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .cert-card-bezel {
+    transition: opacity 0.3s ease !important;
+  }
+
+  .cert-slot-active,
+  .cert-slot-near,
+  .cert-slot-far,
+  .cert-slot-exit,
+  .cert-slot-enter {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .cert-ambient-arc {
+    transition: none !important;
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .cert-prism-top-arc,
+  .cert-prism-glow-base,
+  .cert-prism-glow-secondary,
+  .cert-prism-path-1,
+  .cert-prism-path-2,
+  .cert-prism-path-specular {
+    animation: none !important;
+  }
+
+  .cert-prism-cursor-spot {
+    display: none !important;
+  }
+}
+
