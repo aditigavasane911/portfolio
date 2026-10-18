@@ -7,6 +7,7 @@ import { Hackathon } from "@/components/Hackathon";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { SelectedWork } from "@/components/SelectedWork";
+import { TechMarquee } from "@/components/TechMarquee";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,6 +38,7 @@ function Portfolio() {
       <Hero />
       <About />
       <SelectedWork />
+      <TechMarquee />
       <Certifications />
       <Hackathon />
       <Contact />
