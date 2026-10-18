@@ -104,7 +104,7 @@ function MarqueeRow({
             return (
               <div key={`${item.name}-1-${idx}`} className="tech-marquee-item">
                 <span className="tech-marquee-icon-wrap" aria-hidden="true">
-                  <Icon className="w-5 h-5 object-contain" />
+                  <Icon className="w-full h-full object-contain" />
                 </span>
                 <span className="tech-marquee-name">{item.name}</span>
               </div>
@@ -119,7 +119,7 @@ function MarqueeRow({
             return (
               <div key={`${item.name}-2-${idx}`} className="tech-marquee-item">
                 <span className="tech-marquee-icon-wrap" aria-hidden="true">
-                  <Icon className="w-5 h-5 object-contain" />
+                  <Icon className="w-full h-full object-contain" />
                 </span>
                 <span className="tech-marquee-name">{item.name}</span>
               </div>

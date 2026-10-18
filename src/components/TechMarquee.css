@@ -9,7 +9,8 @@
   width: 100%;
   max-width: 100%;
   overflow: hidden;
-  padding: clamp(48px, 7vh, 72px) 0;
+  padding-top: clamp(80px, 10vh, 120px);
+  padding-bottom: clamp(120px, 16vh, 190px);
   user-select: none;
   background-color: var(--background);
   color: var(--foreground);
@@ -18,7 +19,7 @@
 .tech-marquee-wrapper {
   display: flex;
   flex-direction: column;
-  gap: clamp(36px, 5.5vh, 52px);
+  gap: clamp(96px, 12vh, 140px);
   width: 100%;
 }
 
@@ -31,12 +32,12 @@
 
 .tech-marquee-title {
   font-family: var(--font-sans);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-size: clamp(1.2rem, 1.8vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted-foreground);
-  margin-bottom: clamp(16px, 2.5vh, 24px);
+  color: var(--foreground);
+  margin-bottom: clamp(36px, 4.8vh, 52px);
   text-align: center;
 }
 
@@ -74,12 +75,12 @@
 
 /* Row 1: Right to Left */
 .tech-marquee-left {
-  animation: techMarqueeScrollLeft 38s linear infinite;
+  animation: techMarqueeScrollLeft 46s linear infinite;
 }
 
 /* Row 2: Left to Right */
 .tech-marquee-right {
-  animation: techMarqueeScrollRight 42s linear infinite;
+  animation: techMarqueeScrollRight 50s linear infinite;
 }
 
 @keyframes techMarqueeScrollLeft {
@@ -104,8 +105,8 @@
 .tech-marquee-group {
   display: flex;
   align-items: center;
-  gap: clamp(28px, 4vw, 44px);
-  padding: 0 clamp(14px, 2vw, 22px);
+  gap: clamp(56px, 6.5vw, 96px);
+  padding: 0 clamp(28px, 3.25vw, 48px);
   flex-shrink: 0;
 }
 
@@ -113,29 +114,35 @@
 .tech-marquee-item {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 14px;
   flex-shrink: 0;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
   cursor: default;
 }
 
 .tech-marquee-item:hover {
-  transform: translateY(-1.5px) scale(1.04);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .tech-marquee-icon-wrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: clamp(28px, 2.4vw, 36px);
+  height: clamp(28px, 2.4vw, 36px);
   flex-shrink: 0;
+}
+
+.tech-marquee-icon-wrap svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .tech-marquee-name {
   font-family: var(--font-sans);
-  font-size: 13.5px;
-  font-weight: 500;
+  font-size: clamp(16px, 1.35vw, 20px);
+  font-weight: 550;
   letter-spacing: -0.01em;
   color: var(--foreground);
   white-space: nowrap;

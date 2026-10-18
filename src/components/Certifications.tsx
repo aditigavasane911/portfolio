@@ -669,7 +669,7 @@ export function Certifications() {
       </div>
 
       {/* 2. Top Heading (Center, Smaller, Tighter, Calmer) */}
-      <div className="relative z-20 pt-1 sm:pt-2 px-6 text-center shrink-0">
+      <div className="relative z-20 pt-2 sm:pt-4 pb-4 sm:pb-6 px-6 text-center shrink-0">
         <h2 className="max-w-[1000px] mx-auto leading-[1.2] tracking-[-0.02em] text-[#efe9dd]">
           <TextReveal
             as="span"
