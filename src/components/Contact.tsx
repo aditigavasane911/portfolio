@@ -5,14 +5,7 @@ import { TextReveal } from "@/components/TextReveal";
 import { contactDetails } from "@/data/content";
 
 export function Contact() {
-  const tools = [
-    "VS Code",
-    "Git & GitHub",
-    "Docker",
-    "Postman",
-    "Figma",
-    "Android Studio",
-  ];
+  const tools = ["VS Code", "Git & GitHub", "Docker", "Postman", "Figma", "Android Studio"];
 
   const technologies = [
     "Python",
@@ -166,7 +159,10 @@ export function Contact() {
           </TextReveal>
 
           {/* Prominent Socials & Resume with Logos */}
-          <TextReveal delay={160} className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+          <TextReveal
+            delay={160}
+            className="flex flex-wrap items-center justify-center gap-3 sm:gap-5"
+          >
             {footerSocials.map((item) => {
               const Icon = item.icon;
               return (

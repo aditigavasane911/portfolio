@@ -63,7 +63,8 @@ const certificatesData: CertificateItem[] = [
     title: "Smart India Hackathon 2025 – Grand Finale Participant",
     issuer: "Ministry of Education (Govt. of India)",
     year: "Dec 2025",
-    skills: "Travon (AI Pilgrim Management) / Rapid Prototyping / Full-Stack AI / Real-Time Systems",
+    skills:
+      "Travon (AI Pilgrim Management) / Rapid Prototyping / Full-Stack AI / Real-Time Systems",
     description:
       "Awarded by the Ministry of Education's Innovation Cell (MIC) & AICTE for competing in the Grand Finale of Smart India Hackathon 2025 (Software Edition), building Travon at IIIT Dharwad.",
     credentialUrl: certSih2025,
@@ -207,7 +208,7 @@ export function Certifications() {
         {
           threshold: 0.08,
           rootMargin: "0px 0px -40px 0px",
-        }
+        },
       );
 
       observer.observe(section);

@@ -28,7 +28,7 @@ function getSharedObserver(): IntersectionObserver | null {
       {
         threshold: 0.08,
         rootMargin: "0px 0px -30px 0px",
-      }
+      },
     );
   }
 
@@ -37,7 +37,7 @@ function getSharedObserver(): IntersectionObserver | null {
 
 export function registerRevealElement(
   element: Element,
-  callback?: (isIntersecting: boolean) => void
+  callback?: (isIntersecting: boolean) => void,
 ): () => void {
   const observer = getSharedObserver();
   if (!observer) {

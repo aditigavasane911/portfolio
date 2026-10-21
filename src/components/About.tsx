@@ -10,7 +10,10 @@ export function About() {
       </TextReveal>
       <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-14">
         <div>
-          <TextReveal delay={80} className="relative aspect-[3/4] w-full overflow-hidden border border-border bg-secondary">
+          <TextReveal
+            delay={80}
+            className="relative aspect-[3/4] w-full overflow-hidden border border-border bg-secondary"
+          >
             <img
               src={aboutImage}
               alt="Aditi Anil Gavasane"

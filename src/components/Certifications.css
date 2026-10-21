@@ -64,9 +64,10 @@
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
 
@@ -225,7 +226,8 @@
 .cert-prism-path-2 {
   will-change: transform;
   opacity: 0.8;
-  animation: cert-prism-wave-flow-2 calc(var(--prism-speed, 22s) * 1.25) ease-in-out infinite alternate;
+  animation: cert-prism-wave-flow-2 calc(var(--prism-speed, 22s) * 1.25) ease-in-out infinite
+    alternate;
   transform-origin: 50% 80%;
 }
 
@@ -602,7 +604,9 @@
   border-radius: 9999px;
   background-color: #efe9dd;
   opacity: 0;
-  transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 
@@ -754,4 +758,3 @@
     display: none !important;
   }
 }
-

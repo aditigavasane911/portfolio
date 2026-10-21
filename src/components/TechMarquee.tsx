@@ -85,13 +85,7 @@ const techList: MarqueeItem[] = [
   { name: "Socket.IO", Icon: SocketIOLogo },
 ];
 
-function MarqueeRow({
-  items,
-  direction,
-}: {
-  items: MarqueeItem[];
-  direction: "left" | "right";
-}) {
+function MarqueeRow({ items, direction }: { items: MarqueeItem[]; direction: "left" | "right" }) {
   const directionClass = direction === "left" ? "tech-marquee-left" : "tech-marquee-right";
 
   return (
