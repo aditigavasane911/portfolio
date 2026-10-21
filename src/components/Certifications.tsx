@@ -1,13 +1,17 @@
+import { ExternalLink, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { TextReveal } from "@/components/TextReveal";
 import "./Certifications.css";
 
+import certClaudeVertexAi from "@/assets/cert-claude-vertex-ai.png";
+import certAnthropicAiFluency from "@/assets/cert-anthropic-ai-fluency.png";
+import certCodechefMl from "@/assets/cert-codechef-ml.png";
+import certSih2025 from "@/assets/cert-sih-2025.jpg";
+
 // ============================================================================
 // CERTIFICATES DATA
-// Replace these entries with Aditi's real certificates.
-// You can add as many certificates as you want (3, 5, 10, 15+).
-// The carousel, dots, and navigation will automatically adjust.
+// Original certificates for Aditi Gavasane
 // ============================================================================
 export type CertificateItem = {
   id: string;
@@ -22,178 +26,50 @@ export type CertificateItem = {
 
 const certificatesData: CertificateItem[] = [
   {
-    id: "google-pm",
-    title: "Google Project Management Professional Certificate",
-    issuer: "Google (Coursera)",
-    year: "2024",
-    skills: "Project Management / Planning / Execution",
+    id: "claude-vertex-ai",
+    title: "Claude with Google Vertex AI",
+    issuer: "Anthropic",
+    year: "Aug 2026",
+    skills: "Anthropic Claude / Google Vertex AI / Cloud LLM APIs / Generative AI",
     description:
-      "Completed the Google Project Management Professional Certificate to strengthen my product, planning, and execution skills. It helped me understand real-world frameworks and how to deliver projects more effectively.",
-    credentialUrl: "https://coursera.org/verify/professional-cert/google-project-management",
+      "Certified by Anthropic in deploying, prompt engineering, and orchestrating Claude foundation models within Google Cloud Vertex AI, engineering scalable enterprise generative AI solutions.",
+    credentialUrl: certClaudeVertexAi,
+    image: certClaudeVertexAi,
   },
   {
-    id: "deeplearning-ai-prompt",
-    title: "Generative AI & Prompt Engineering Specialist",
-    issuer: "DeepLearning.AI",
-    year: "2024",
-    skills: "Prompt Engineering / LLM Architecture / AI Systems",
+    id: "anthropic-ai-fluency",
+    title: "AI Fluency: Framework & Foundations",
+    issuer: "Anthropic",
+    year: "Aug 2026",
+    skills: "AI Frameworks / LLM Foundations / Prompt Engineering / Applied AI",
     description:
-      "Mastered structured prompting, multi-turn context orchestration, reasoning chains, and integrating state-of-the-art LLMs into resilient full-stack applications and automated pipelines.",
-    credentialUrl: "https://deeplearning.ai",
+      "Certified in foundational AI mechanics, prompt design frameworks, and applied reasoning principles by Anthropic in partnership with UCC, Ringling College, and HEA.",
+    credentialUrl: certAnthropicAiFluency,
+    image: certAnthropicAiFluency,
   },
   {
-    id: "meta-fullstack",
-    title: "Meta Front-End & Full-Stack Developer",
-    issuer: "Meta (Coursera)",
-    year: "2023",
-    skills: "React / TypeScript / REST APIs / Modern UI Design",
+    id: "codechef-ml",
+    title: "Machine Learning",
+    issuer: "CodeChef",
+    year: "Oct 2026",
+    skills: "Machine Learning / Python / Predictive Modeling / Model Evaluation / Scikit-Learn",
     description:
-      "Developed end-to-end expertise in modern React architectures, server-side data fetching, robust state management, and high-performance user interface engineering.",
-    credentialUrl: "https://coursera.org/verify",
+      "Successfully completed comprehensive curriculum modules and hands-on projects in Machine Learning by CodeChef (Cert ID: 9084558), mastering core predictive algorithms and model workflows.",
+    credentialUrl: "https://www.codechef.com/certificates/verify",
+    image: certCodechefMl,
   },
   {
-    id: "sih-hackathon",
-    title: "Smart India Hackathon 2025 Finalist",
+    id: "sih-2025-finale",
+    title: "Smart India Hackathon 2025 – Grand Finale Participant",
     issuer: "Ministry of Education (Govt. of India)",
-    year: "2025",
-    skills: "Rapid Prototyping / Full-Stack AI / System Design",
+    year: "Dec 2025",
+    skills: "Travon (AI Pilgrim Management) / Rapid Prototyping / Full-Stack AI / Real-Time Systems",
     description:
-      "Selected as a national finalist in India's premier nationwide hackathon, architecting and prototyping high-impact AI and software solutions under intensive real-world conditions.",
-    credentialUrl: "https://sih.gov.in",
+      "Awarded by the Ministry of Education's Innovation Cell (MIC) & AICTE for competing in the Grand Finale of Smart India Hackathon 2025 (Software Edition), building Travon at IIIT Dharwad.",
+    credentialUrl: certSih2025,
+    image: certSih2025,
   },
 ];
-
-// ============================================================================
-// Google Project Management Certificate
-// Replicating the exact reference image certificate layout with recipient "Aditi"
-// ============================================================================
-function GoogleProjectManagementCert({ recipient = "Aditi" }: { recipient?: string }) {
-  return (
-    <div className="relative w-full h-full bg-white text-[#1f1f1f] flex overflow-hidden select-none font-sans">
-      {/* Main Left Certificate Area */}
-      <div className="flex-1 p-4 sm:p-6 flex flex-col justify-between">
-        {/* Google Logo */}
-        <div className="flex items-center justify-center">
-          <svg className="h-5 sm:h-6 w-auto" viewBox="0 0 272 92" fill="none">
-            <path
-              d="M115.8 45.4c0-10.2 7.7-18.1 17.6-18.1s17.6 7.9 17.6 18.1-7.7 18.1-17.6 18.1-17.6-8-17.6-18.1zm28 0c0-6.6-4.6-11.4-10.4-11.4s-10.4 4.8-10.4 11.4c0 6.5 4.6 11.4 10.4 11.4s10.4-4.8 10.4-11.4z"
-              fill="#EA4335"
-            />
-            <path
-              d="M78 45.4c0-10.2 7.7-18.1 17.6-18.1s17.6 7.9 17.6 18.1-7.7 18.1-17.6 18.1S78 55.6 78 45.4zm28 0c0-6.6-4.6-11.4-10.4-11.4s-10.4 4.8-10.4 11.4c0 6.5 4.6 11.4 10.4 11.4s10.4-4.8 10.4-11.4z"
-              fill="#FBBC05"
-            />
-            <path
-              d="M198.8 35.8v26c0 10.7-6.3 15.1-13.8 15.1-7.1 0-11.3-4.7-12.9-8.6l6.3-2.6c1.1 2.7 3.8 5.8 6.6 5.8 4.3 0 7-2.7 7-7.7v-2.3h-.3c-1.9 2.3-5.5 4.3-10.1 4.3-9.6 0-18.4-8.3-18.4-18.2s8.8-18.1 18.4-18.1c4.6 0 8.2 2 10.1 4.2h.3v-3.9h6.8zm-6.6 9.7c0-6.6-4.3-11.4-10.1-11.4s-10.4 4.8-10.4 11.4c0 6.5 4.6 11.4 10.4 11.4s10.1-4.8 10.1-11.4z"
-              fill="#4285F4"
-            />
-            <path d="M206.2 11.2h7.2v52.3h-7.2z" fill="#34A853" />
-            <path
-              d="M239.5 49.9l5.7 3.8c-1.8 2.8-6.3 7.8-13.8 7.8-9.4 0-16.5-7.3-16.5-18.1 0-10.9 7.2-18.1 15.7-18.1 8.5 0 12.8 7.3 14.1 11.1l.8 2-22.1 9.1c1.7 3.4 4.4 5.2 8.2 5.2 3.8 0 6.3-1.9 8-4.8zm-17.3-5.1l14.8-6.1c-.8-2-3.1-3.4-5.9-3.4-3.5 0-8.6 3.1-8.9 9.5z"
-              fill="#EA4335"
-            />
-            <path
-              d="M39.6 42.7v-7h22.6c.2 1.2.3 2.7.3 4.3 0 5.3-1.4 11.9-6.1 16.5-4.5 4.7-10.4 7.2-18.4 7.2-14.7 0-26.6-11.9-26.6-26.6S23.3 10.5 38 10.5c8.3 0 14.3 3.3 18.8 7.5l-5.2 5.2c-3.2-3-7.5-5.3-13.6-5.3-11 0-19.7 8.9-19.7 19.7 0 10.9 8.7 19.7 19.7 19.7 7.1 0 11.2-2.8 13.8-5.4 2.1-2.1 3.5-5.2 4.1-9.2H39.6z"
-              fill="#4285F4"
-            />
-          </svg>
-        </div>
-
-        {/* Certificate Titles */}
-        <div className="text-center my-auto py-1">
-          <h3 className="text-base sm:text-xl font-bold tracking-tight text-[#111827]">
-            Project Management
-          </h3>
-          <p className="text-[11px] sm:text-xs font-medium text-neutral-600 mt-0.5">
-            Certificate of Completion
-          </p>
-
-          <p className="text-[9px] sm:text-[10px] text-neutral-500 mt-1.5 sm:mt-2">
-            This is to certify that
-          </p>
-          <p className="text-lg sm:text-xl font-bold text-neutral-900 mt-0.5">{recipient}</p>
-          <p className="text-[8px] sm:text-[9px] text-neutral-600 max-w-[320px] sm:max-w-[360px] mx-auto mt-1 leading-tight sm:leading-snug">
-            has successfully completed the Google Project Management Professional Certificate, an
-            online, non-credit program authorized by Google and offered through Coursera.
-          </p>
-        </div>
-
-        {/* Bottom Details: Date, Signature, Coursera */}
-        <div className="flex items-end justify-between pt-1.5 border-t border-neutral-200/80 text-[8px] sm:text-[9px]">
-          <div>
-            <p className="font-semibold text-neutral-800">Jan 10, 2024</p>
-            <p className="text-neutral-500 text-[7px] uppercase tracking-wider">Date</p>
-          </div>
-
-          <div className="text-center">
-            {/* Signature SVG */}
-            <svg
-              className="h-5 sm:h-6 w-20 sm:w-24 mx-auto"
-              viewBox="0 0 120 30"
-              fill="none"
-              stroke="#111827"
-              strokeWidth="1.5"
-            >
-              <path
-                d="M10 22 C 25 5, 20 28, 35 15 C 45 5, 50 25, 65 18 C 75 12, 85 22, 105 10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path d="M22 18 Q 40 8 75 14" strokeLinecap="round" />
-            </svg>
-            <p className="font-semibold text-neutral-800 text-[8px]">Amanda Brophy</p>
-            <p className="text-neutral-500 text-[7px]">
-              Global Director of Google Career Certificates
-            </p>
-          </div>
-
-          <div className="flex items-center">
-            <span className="font-bold text-[11px] sm:text-xs tracking-tight text-[#0056d2]">
-              coursera
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Right Accent Tab Banner */}
-      <div className="w-16 sm:w-20 bg-[#eef3f8] border-l border-neutral-200/60 p-2.5 flex flex-col justify-between items-center text-center">
-        <div className="text-[7px] sm:text-[8px] font-semibold text-neutral-600 leading-tight">
-          Google
-          <br />
-          Career
-          <br />
-          Certificates
-        </div>
-
-        {/* Circular Google Seal Badge */}
-        <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-dashed border-neutral-300 flex items-center justify-center p-1 bg-white shadow-xs">
-          <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24">
-            <path
-              fill="#4285F4"
-              d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"
-            />
-            <path
-              fill="#34A853"
-              d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"
-            />
-            <path
-              fill="#FBBC05"
-              d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 10.04 0 12s.45 3.82 1.25 5.42l4.03-3.15z"
-            />
-            <path
-              fill="#EA4335"
-              d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
-            />
-          </svg>
-        </div>
-
-        <div className="text-[7px] uppercase tracking-wider text-neutral-400 font-mono">
-          Verified
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // Fallback certificate graphic for entries without a static image file
 function VectorCertificateFallback({ cert }: { cert: CertificateItem }) {
@@ -280,6 +156,23 @@ export function Certifications() {
   const queuedActionRef = useRef<"next" | "prev" | null>(null);
 
   const sectionRef = useRef<HTMLElement | null>(null);
+
+  // Lightbox modal for previewing certificate full-size
+  const [selectedCertForModal, setSelectedCertForModal] = useState<CertificateItem | null>(null);
+
+  useEffect(() => {
+    if (!selectedCertForModal) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedCertForModal(null);
+    };
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedCertForModal]);
 
   // Scroll reveal: appear once on scroll and stay visible permanently until refresh
   const [hasAppeared, setHasAppeared] = useState(false);
@@ -705,22 +598,48 @@ export function Certifications() {
             return (
               <div
                 key={cert.id}
-                className={`cert-card-bezel ${slotClass} ${noTrans}`}
+                className={`cert-card-bezel ${slotClass} ${noTrans} ${
+                  slotClass === "cert-slot-active" ? "cursor-pointer group/card" : ""
+                }`}
                 data-cert-id={cert.id}
+                onClick={() => {
+                  if (slotClass === "cert-slot-active") {
+                    setSelectedCertForModal(cert);
+                  }
+                }}
               >
                 <div className="w-full h-full">
-                  <div className="cert-card-screen">
+                  <div className="cert-card-screen relative">
                     {cert.image ? (
                       <img
                         src={cert.image}
                         alt={cert.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-[1.02]"
                         loading="lazy"
                       />
-                    ) : cert.id === "google-pm" ? (
-                      <GoogleProjectManagementCert recipient="Aditi" />
                     ) : (
                       <VectorCertificateFallback cert={cert} />
+                    )}
+                    {slotClass === "cert-slot-active" && (
+                      <div className="absolute inset-0 bg-black/0 group-hover/card:bg-black/25 transition-colors flex items-center justify-center opacity-0 group-hover/card:opacity-100 pointer-events-none">
+                        <span className="px-3.5 py-1.5 rounded-full bg-black/80 text-[#efe9dd] text-[11px] font-medium tracking-wider uppercase backdrop-blur-xs shadow-lg flex items-center gap-1.5 border border-white/10">
+                          <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
+                            <path
+                              d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          Click to View
+                        </span>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -766,19 +685,36 @@ export function Certifications() {
                 </div>
 
                 {/* VIEW CREDENTIAL LINK */}
-                {currentCert.credentialUrl && (
-                  <div className="pt-2 cert-row-stagger-3">
+                <div className="pt-2 cert-row-stagger-3 flex flex-wrap items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCertForModal(currentCert)}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wider uppercase text-[#efe9dd]/90 hover:text-[#efe9dd] transition-colors cursor-pointer"
+                  >
+                    <span>VIEW CERTIFICATE</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </button>
+                  {currentCert.id === "codechef-ml" && (
                     <a
-                      href={currentCert.credentialUrl}
+                      href="https://www.codechef.com/certificates/verify"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wider uppercase text-[#efe9dd]/80 hover:text-[#efe9dd] transition-colors"
+                      className="inline-flex items-center gap-1 text-[11px] tracking-wider uppercase text-[#efe9dd]/65 hover:text-[#efe9dd] transition-colors"
                     >
-                      <span>VIEW CREDENTIAL</span>
-                      <span aria-hidden="true">&rarr;</span>
+                      <span>VERIFY (ID: 9084558)</span>
+                      <ExternalLink className="w-3 h-3" />
                     </a>
-                  </div>
-                )}
+                  )}
+                  {currentCert.id === "sih-2025-finale" && (
+                    <a
+                      href="#hackathons"
+                      className="inline-flex items-center gap-1 text-[11px] tracking-wider uppercase text-[#efe9dd]/65 hover:text-[#efe9dd] transition-colors"
+                    >
+                      <span>SEE SIH DETAILS</span>
+                      <span aria-hidden="true">&darr;</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -795,8 +731,15 @@ export function Certifications() {
               return (
                 <div
                   key={cert.id}
-                  className={`cert-card-bezel ${slotClass} ${noTrans}`}
+                  className={`cert-card-bezel ${slotClass} ${noTrans} ${
+                    slotClass === "cert-slot-active" ? "cursor-pointer" : ""
+                  }`}
                   data-cert-id={cert.id}
+                  onClick={() => {
+                    if (slotClass === "cert-slot-active") {
+                      setSelectedCertForModal(cert);
+                    }
+                  }}
                 >
                   <div className="cert-card-screen">
                     {cert.image ? (
@@ -806,8 +749,6 @@ export function Certifications() {
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
-                    ) : cert.id === "google-pm" ? (
-                      <GoogleProjectManagementCert recipient="Aditi" />
                     ) : (
                       <VectorCertificateFallback cert={cert} />
                     )}
@@ -844,19 +785,36 @@ export function Certifications() {
                 </div>
 
                 {/* VIEW CREDENTIAL LINK */}
-                {currentCert.credentialUrl && (
-                  <div className="pt-2 cert-row-stagger-3">
+                <div className="pt-2 cert-row-stagger-3 flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCertForModal(currentCert)}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wider uppercase text-[#efe9dd]/90 hover:text-[#efe9dd] transition-colors cursor-pointer"
+                  >
+                    <span>VIEW CERTIFICATE</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </button>
+                  {currentCert.id === "codechef-ml" && (
                     <a
-                      href={currentCert.credentialUrl}
+                      href="https://www.codechef.com/certificates/verify"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wider uppercase text-[#efe9dd]/80 hover:text-[#efe9dd] transition-colors"
+                      className="inline-flex items-center gap-1 text-[11px] tracking-wider uppercase text-[#efe9dd]/65 hover:text-[#efe9dd] transition-colors"
                     >
-                      <span>VIEW CREDENTIAL</span>
-                      <span aria-hidden="true">&rarr;</span>
+                      <span>VERIFY ID: 9084558</span>
+                      <ExternalLink className="w-3 h-3" />
                     </a>
-                  </div>
-                )}
+                  )}
+                  {currentCert.id === "sih-2025-finale" && (
+                    <a
+                      href="#hackathons"
+                      className="inline-flex items-center gap-1 text-[11px] tracking-wider uppercase text-[#efe9dd]/65 hover:text-[#efe9dd] transition-colors"
+                    >
+                      <span>SEE SIH DETAILS</span>
+                      <span aria-hidden="true">&darr;</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -953,6 +911,83 @@ export function Certifications() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox Certificate Modal */}
+      {selectedCertForModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedCertForModal.title}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-md"
+          onClick={() => setSelectedCertForModal(null)}
+        >
+          <div
+            className="relative max-h-[92vh] max-w-4xl w-full flex flex-col items-center bg-[#1c1b1a] border border-white/15 rounded-2xl p-4 sm:p-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header bar */}
+            <div className="w-full flex items-center justify-between pb-3 border-b border-white/10 mb-3 text-left">
+              <div>
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-[#efe9dd] leading-snug">
+                  {selectedCertForModal.title}
+                </h3>
+                <p className="text-[11px] sm:text-xs text-[#efe9dd]/60 mt-0.5">
+                  {selectedCertForModal.issuer} &bull; {selectedCertForModal.year}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedCertForModal(null)}
+                aria-label="Close Certificate Preview"
+                className="p-1.5 rounded-full text-[#efe9dd]/70 hover:text-[#efe9dd] hover:bg-white/10 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Certificate Image Frame */}
+            <div className="relative w-full flex-1 flex items-center justify-center overflow-hidden rounded-xl bg-black/40 p-1 sm:p-2">
+              <img
+                src={selectedCertForModal.image}
+                alt={selectedCertForModal.title}
+                className="max-h-[66vh] w-auto max-w-full object-contain rounded-lg shadow-xl"
+              />
+            </div>
+
+            {/* Footer with verification link / open in new tab */}
+            <div className="w-full flex flex-wrap items-center justify-between gap-3 pt-3 mt-3 border-t border-white/10 text-xs">
+              <span className="text-[#efe9dd]/70 text-[11px] sm:text-xs">
+                Skills:{" "}
+                <span className="text-[#efe9dd] font-medium">{selectedCertForModal.skills}</span>
+              </span>
+              <div className="flex items-center gap-2 sm:gap-3">
+                {selectedCertForModal.id === "codechef-ml" && (
+                  <a
+                    href="https://www.codechef.com/certificates/verify"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-[#efe9dd] text-[11px] font-medium transition-colors"
+                  >
+                    <span>Verify ID: 9084558</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                {selectedCertForModal.image && (
+                  <a
+                    href={selectedCertForModal.image}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#e0643a] hover:bg-[#e0643a]/90 text-white text-[11px] font-medium shadow-sm transition-colors"
+                  >
+                    <span>Open Full Size</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
